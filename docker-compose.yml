@@ -1,0 +1,14 @@
+services:
+  miniconda:
+    build: .
+    image: buc-ai:latest 
+    working_dir: /workspace
+    ports:
+      - 8888:8888
+    volumes:
+      - .:/workspace
+    command: sh -c "
+        mkdir -p /workspace && \
+        jupyter notebook \
+        --notebook-dir=/workspace --ip='*' --port=8888 --no-browser --allow-root
+      "
